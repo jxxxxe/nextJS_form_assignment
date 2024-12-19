@@ -1,6 +1,9 @@
 "use server";
 
-export async function handleForm(prevState: any, formData: FormData) {
+export async function handleForm(
+  prevState: boolean | null,
+  formData: FormData
+) {
   await new Promise((resolve) => {
     setTimeout(resolve, 2000);
   });

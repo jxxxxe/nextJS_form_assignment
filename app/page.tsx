@@ -10,7 +10,7 @@ import {
 import Input from "./components/Input";
 import LoginButton from "./components/LoginButton";
 import { handleForm } from "./actions";
-import { FormEvent, useActionState } from "react";
+import { useActionState } from "react";
 
 export default function Home() {
   const [state, action] = useActionState(handleForm, null);
