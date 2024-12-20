@@ -27,8 +27,8 @@ export default function Home() {
           </div>
           {state &&
             state !== true &&
-            state.emailError?.map((error) => (
-              <ErrorMessage>{error}</ErrorMessage>
+            state.emailError?.map((error, index) => (
+              <ErrorMessage key={"email-error" + index}>{error}</ErrorMessage>
             ))}
         </div>
         <div className="flex flex-col gap-1">
@@ -38,8 +38,8 @@ export default function Home() {
           </div>
           {state &&
             state !== true &&
-            state.nameError?.map((error) => (
-              <ErrorMessage>{error}</ErrorMessage>
+            state.nameError?.map((error, index) => (
+              <ErrorMessage key={"name-error" + index}>{error}</ErrorMessage>
             ))}
         </div>
         <div>
@@ -54,8 +54,10 @@ export default function Home() {
           </div>
           {state &&
             state !== true &&
-            state.passwordError?.map((error) => (
-              <ErrorMessage>{error}</ErrorMessage>
+            state.passwordError?.map((error, index) => (
+              <ErrorMessage key={"password-error" + index}>
+                {error}
+              </ErrorMessage>
             ))}
         </div>
         <LoginButton />
