@@ -1,8 +1,9 @@
 "use client";
 
+import { PropsWithChildren } from "react";
 import { useFormStatus } from "react-dom";
 
-export default function LoginButton() {
+export default function Button({ children }: PropsWithChildren) {
   const { pending } = useFormStatus();
 
   return (
@@ -10,7 +11,7 @@ export default function LoginButton() {
       disabled={pending}
       className="w-80 h-10 rounded-full bg-neutral-200 disabled:bg-neutral-300 disabled:text-neutral-400"
     >
-      {pending ? "Loading..." : "Log in"}
+      {pending ? "Loading..." : children}
     </button>
   );
 }

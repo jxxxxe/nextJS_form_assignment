@@ -9,7 +9,7 @@ import {
 } from "@heroicons/react/16/solid";
 import Input from "../components/Input";
 import { loginAction } from "./actions";
-import LoginButton from "../components/LoginButton";
+import Button from "../components/Button";
 import { useFormState } from "react-dom";
 
 export default function LoginPage() {
@@ -31,18 +31,6 @@ export default function LoginPage() {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-1">
-          <div className="relative">
-            <UserIcon className="size-4 absolute left-3 top-[1.4rem] transform -translate-y-1/2 text-gray-500" />
-            <Input
-              placeholder="Username"
-              type="name"
-              name="name"
-              required
-              errorMessages={state?.fieldErrors.name}
-            />
-          </div>
-        </div>
         <div>
           <div className="relative">
             <KeyIcon className="size-4 absolute left-3 top-[1.4rem] transform -translate-y-1/2 text-gray-500" />
@@ -55,7 +43,7 @@ export default function LoginPage() {
             />
           </div>
         </div>
-        <LoginButton />
+        <Button>Log in</Button>
         {!state?.fieldErrors && (
           <div className="w-80 bg-emerald-500 rounded-xl flex items-center p-3 gap-2">
             <CheckBadgeIcon className="size-4" />

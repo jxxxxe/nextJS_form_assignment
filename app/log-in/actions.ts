@@ -1,30 +1,70 @@
 "use server";
 
+import prisma from "@/libs/prisma";
 import { z } from "zod";
+import bcrypt from "bcrypt";
+import getSession from "@/libs/session";
+import { redirect } from "next/navigation";
+
+const emailExist = async (email: string) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  return Boolean(user);
+};
 
 const userSchema = z.object({
-  email: z.string().endsWith("zod.com", "Only @zod.com emails are allowed."),
-  name: z.string().min(5, "Username sholud be at least 5 characters long."),
-  password: z
-    .string()
-    .min(10, "Password sholud be at least 10 characters long.")
-    .regex(/\d/, "Password should contain at least one number (0123456789)."),
+  email: z.string().refine(emailExist, "This email does not exist"),
+  password: z.string(),
 });
 
 export async function loginAction(_: any, formData: FormData) {
   await new Promise((resolve) => {
-    setTimeout(resolve, 2000);
+    setTimeout(resolve, 1000);
   });
 
   const userData = {
     email: formData.get("email"),
-    name: formData.get("name"),
     password: formData.get("password"),
   };
 
-  const result = userSchema.safeParse(userData);
+  const result = await userSchema.safeParseAsync(userData);
 
   if (!result.success) {
     return result.error.flatten();
   }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      email: result.data.email,
+    },
+    select: {
+      id: true,
+      password: true,
+    },
+  });
+
+  const isCorrectPassword = await bcrypt.compare(
+    result.data.password,
+    user!.password
+  );
+
+  if (!isCorrectPassword) {
+    return {
+      fieldErrors: {
+        email: [""],
+        password: ["Worng password"],
+      },
+    };
+  }
+
+  const session = await getSession();
+  session.id = user!.id;
+
+  await session.save();
+
+  redirect("/profile");
 }
