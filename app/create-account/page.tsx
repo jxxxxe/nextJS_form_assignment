@@ -26,7 +26,7 @@ export default function CreateAccount() {
               type="email"
               name="email"
               required
-              errorMessages={state?.fieldErrors.email}
+              errormessages={state?.fieldErrors.email}
             />
           </div>
         </div>
@@ -38,7 +38,7 @@ export default function CreateAccount() {
               type="name"
               name="name"
               required
-              errorMessages={state?.fieldErrors.name}
+              errormessages={state?.fieldErrors.name}
             />
           </div>
         </div>
@@ -49,7 +49,7 @@ export default function CreateAccount() {
             type="password"
             name="password"
             required
-            errorMessages={state?.fieldErrors.password}
+            errormessages={state?.fieldErrors.password}
           />
         </div>
         <div className="relative">
@@ -59,7 +59,7 @@ export default function CreateAccount() {
             type="password"
             name="confirm_password"
             required
-            errorMessages={state?.fieldErrors.confirm_password}
+            errormessages={state?.fieldErrors.confirm_password}
           />
         </div>
         <Button>Sign up</Button>

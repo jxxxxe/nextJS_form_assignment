@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  CheckBadgeIcon,
-  EnvelopeIcon,
-  FireIcon,
-  KeyIcon,
-  UserIcon,
-} from "@heroicons/react/16/solid";
+import { EnvelopeIcon, FireIcon, KeyIcon } from "@heroicons/react/16/solid";
 import Input from "../components/Input";
 import { loginAction } from "./actions";
 import Button from "../components/Button";
@@ -27,7 +21,7 @@ export default function LoginPage() {
               type="email"
               name="email"
               required
-              errorMessages={state?.fieldErrors.email}
+              errormessages={state?.fieldErrors.email}
             />
           </div>
         </div>
@@ -39,17 +33,11 @@ export default function LoginPage() {
               type="password"
               name="password"
               required
-              errorMessages={state?.fieldErrors.password}
+              errormessages={state?.fieldErrors.password}
             />
           </div>
         </div>
         <Button>Log in</Button>
-        {!state?.fieldErrors && (
-          <div className="w-80 bg-emerald-500 rounded-xl flex items-center p-3 gap-2">
-            <CheckBadgeIcon className="size-4" />
-            Welcome back!
-          </div>
-        )}
       </form>
     </div>
   );

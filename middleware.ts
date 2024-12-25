@@ -5,11 +5,12 @@ const publicPath = new Set(["/", "/log-in", "/create-account"]);
 
 export default async function middleware(request: NextRequest) {
   const session = await getSession();
-  const requestPathname = request.nextUrl.pathname;
-  if (!session.id && !publicPath.has(requestPathname)) {
+
+  const isPublic = publicPath.has(request.nextUrl.pathname);
+  if (!session.id && !isPublic) {
     return NextResponse.redirect(new URL("/", request.url));
   }
-  if (session.id && publicPath.has(requestPathname)) {
+  if (session.id && isPublic) {
     return NextResponse.redirect(new URL("/profile", request.url));
   }
 }
