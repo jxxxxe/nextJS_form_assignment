@@ -2,13 +2,19 @@ import prisma from "@/libs/prisma";
 import getSession from "@/libs/session";
 import { logoutAction } from "./actions";
 
-export default async function ProfilePage() {
+async function getUser() {
   const session = await getSession();
   const user = await prisma.user.findUnique({
     where: {
       id: session.id,
     },
   });
+
+  return user;
+}
+
+export default async function ProfilePage() {
+  const user = await getUser();
 
   return (
     <div className="text-black">
