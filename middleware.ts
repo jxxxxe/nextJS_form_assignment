@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import getSession from "./libs/session";
 
-const publicPath = new Set(["/", "/log-in", "/create-account"]);
+const publicPath = new Set(["/intro", "/log-in", "/create-account"]);
 
 export default async function middleware(request: NextRequest) {
   const session = await getSession();
 
   const isPublic = publicPath.has(request.nextUrl.pathname);
   if (!session.id && !isPublic) {
-    return NextResponse.redirect(new URL("/", request.url));
+    return NextResponse.redirect(new URL("/intro", request.url));
   }
   if (session.id && isPublic) {
     return NextResponse.redirect(new URL("/profile", request.url));

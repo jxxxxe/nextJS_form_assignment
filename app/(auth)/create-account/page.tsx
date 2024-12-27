@@ -7,8 +7,8 @@ import {
   KeyIcon,
   UserIcon,
 } from "@heroicons/react/16/solid";
-import Input from "../components/Input";
-import Button from "../components/Button";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 import { useFormState } from "react-dom";
 
 export default function CreateAccount() {

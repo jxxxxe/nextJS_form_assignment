@@ -82,5 +82,5 @@ export async function SignupAction(_: any, formData: FormData) {
   session.id = user.id;
   session.save();
 
-  redirect("/profile");
+  redirect("/");
 }

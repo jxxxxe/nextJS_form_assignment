@@ -1,12 +1,12 @@
-"use client";
+import TweetList from "./components/tweet-list";
+import { getTweets } from "./actions";
 
-import Link from "next/link";
+export default async function Home() {
+  const tweets = await getTweets(0);
 
-export default function Home() {
   return (
-    <div className="flex flex-col gap-3 text-black justify-center items-center w-full h-full">
-      <Link href="/log-in">로그인하기</Link>
-      <Link href="/create-account">회원가입하기</Link>
+    <div className="flex flex-col divide-y-2 gap-3 text-black justify-center items-center w-full h-full">
+      <TweetList {...tweets} />
     </div>
   );
 }

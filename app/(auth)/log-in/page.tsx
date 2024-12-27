@@ -1,9 +1,9 @@
 "use client";
 
 import { EnvelopeIcon, FireIcon, KeyIcon } from "@heroicons/react/16/solid";
-import Input from "../components/Input";
+import Input from "../../components/Input";
 import { loginAction } from "./actions";
-import Button from "../components/Button";
+import Button from "../../components/Button";
 import { useFormState } from "react-dom";
 
 export default function LoginPage() {
