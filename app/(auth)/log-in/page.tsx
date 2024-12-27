@@ -10,12 +10,12 @@ export default function LoginPage() {
   const [state, action] = useFormState(loginAction, null);
 
   return (
-    <div className="flex flex-col gap-10 items-center p-20 h-full text-black">
-      <FireIcon className="text-red-400 h-10 w-10" />
+    <div className="flex h-full flex-col items-center gap-10 p-20 text-black">
+      <FireIcon className="h-10 w-10 text-red-400" />
       <form action={action} className="flex flex-col gap-3">
         <div className="flex flex-col gap-1">
           <div className="relative">
-            <EnvelopeIcon className="size-4 absolute left-3 top-[1.4rem] transform -translate-y-1/2 text-gray-500" />
+            <EnvelopeIcon className="absolute left-3 top-[1.4rem] size-4 -translate-y-1/2 transform text-gray-500" />
             <Input
               placeholder="Email"
               type="email"
@@ -27,7 +27,7 @@ export default function LoginPage() {
         </div>
         <div>
           <div className="relative">
-            <KeyIcon className="size-4 absolute left-3 top-[1.4rem] transform -translate-y-1/2 text-gray-500" />
+            <KeyIcon className="absolute left-3 top-[1.4rem] size-4 -translate-y-1/2 transform text-gray-500" />
             <Input
               placeholder="Password"
               type="password"

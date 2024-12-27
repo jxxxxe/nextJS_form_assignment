@@ -9,7 +9,7 @@ export default function Button({ children }: PropsWithChildren) {
   return (
     <button
       disabled={pending}
-      className="w-80 h-10 rounded-full bg-neutral-200 disabled:bg-neutral-300 disabled:text-neutral-400"
+      className="h-10 w-80 rounded-full bg-neutral-200 disabled:bg-neutral-300 disabled:text-neutral-400"
     >
       {pending ? "Loading..." : children}
     </button>

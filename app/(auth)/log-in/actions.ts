@@ -49,7 +49,7 @@ export async function loginAction(_: any, formData: FormData) {
 
   const isCorrectPassword = await bcrypt.compare(
     result.data.password,
-    user!.password
+    user!.password,
   );
 
   if (!isCorrectPassword) {

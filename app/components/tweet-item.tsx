@@ -12,8 +12,8 @@ interface TweetItemProps {
 export default function TweetItem({ id, ownerName, content }: TweetItemProps) {
   return (
     <Link className="flex w-full items-center p-2" href={`/tweets/${id}`}>
-      <div className="w-full flex flex-col">
-        <span className="font-bold text-lg">{ownerName}</span>
+      <div className="flex w-full flex-col">
+        <span className="text-lg font-bold">{ownerName}</span>
         <span>{content}</span>
       </div>
     </Link>

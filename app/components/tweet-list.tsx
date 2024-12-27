@@ -38,7 +38,7 @@ export default function TweetList() {
   }, [page]);
 
   return (
-    <div className="flex flex-col items-center h-screen justify-center">
+    <div className="flex h-screen flex-col items-center justify-center">
       {currentTweets?.map((tweet, index) => (
         <TweetItem
           key={"tweet" + index}
@@ -52,14 +52,14 @@ export default function TweetList() {
         <button
           onClick={() => setPage((prev) => prev - 1)}
           disabled={isLoading || isFirstPage}
-          className="disabled:text-neutral-400 size-9"
+          className="size-9 disabled:text-neutral-400"
         >
           <ArrowLeftCircleIcon />
         </button>
         <button
           onClick={() => setPage((prev) => prev + 1)}
           disabled={isLoading || isLastPage}
-          className="disabled:text-neutral-400 size-9"
+          className="size-9 disabled:text-neutral-400"
         >
           <ArrowRightCircleIcon />
         </button>
