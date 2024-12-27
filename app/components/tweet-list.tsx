@@ -8,13 +8,12 @@ import {
   ArrowRightCircleIcon,
 } from "@heroicons/react/24/solid";
 
-export default function TweetList(tweets: tweetsTypes) {
-  const tweetList = Object.values(tweets);
+export default function TweetList() {
   const [page, setPage] = useState(0);
   const [isFirstPage, setIsFirstPage] = useState(true);
   const [isLastPage, setIsLastPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [currentTweets, setCurrentTweets] = useState(tweetList);
+  const [currentTweets, setCurrentTweets] = useState<tweetsTypes>();
 
   useEffect(() => {
     const loadPage = async (page: number) => {
