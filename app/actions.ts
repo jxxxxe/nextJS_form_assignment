@@ -14,7 +14,7 @@ export const getTweets = async (page: number) => {
       },
     },
     take: 3,
-    skip: page,
+    skip: 3 * page,
   });
 
   return tweets;

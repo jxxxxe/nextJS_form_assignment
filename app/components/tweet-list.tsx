@@ -11,25 +11,27 @@ import {
 export default function TweetList(tweets: tweetsTypes) {
   const tweetList = Object.values(tweets);
   const [page, setPage] = useState(0);
-  const [isLastPage, setIsLastPage] = useState(false);
   const [isFirstPage, setIsFirstPage] = useState(true);
+  const [isLastPage, setIsLastPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [totalTweets, setTotalTweets] = useState(tweetList);
+  const [currentTweets, setCurrentTweets] = useState(tweetList);
 
   useEffect(() => {
     const loadPage = async (page: number) => {
       if (page === 0) {
         setIsFirstPage(true);
+      } else {
+        setIsFirstPage(false);
       }
+
       setIsLoading(true);
-      setIsFirstPage(false);
       const newTweets = await getTweets(page);
 
-      if (newTweets.length) {
+      if (!newTweets.length) {
         setIsLastPage(true);
       } else {
         setIsLastPage(false);
-        setTotalTweets((prev) => [...prev, ...newTweets]);
+        setCurrentTweets(newTweets);
       }
       setIsLoading(false);
     };
@@ -38,8 +40,9 @@ export default function TweetList(tweets: tweetsTypes) {
 
   return (
     <div className="flex flex-col items-center h-screen justify-center">
-      {totalTweets?.map((tweet) => (
+      {currentTweets?.map((tweet, index) => (
         <TweetItem
+          key={"tweet" + index}
           id={tweet.id}
           ownerId={tweet.userId}
           ownerName={tweet.user.username}
@@ -50,14 +53,14 @@ export default function TweetList(tweets: tweetsTypes) {
         <button
           onClick={() => setPage((prev) => prev - 1)}
           disabled={isLoading || isFirstPage}
-          className="disabled:text-neutral-700 size-9"
+          className="disabled:text-neutral-400 size-9"
         >
           <ArrowLeftCircleIcon />
         </button>
         <button
           onClick={() => setPage((prev) => prev + 1)}
           disabled={isLoading || isLastPage}
-          className="disabled:text-neutral-700 size-9"
+          className="disabled:text-neutral-400 size-9"
         >
           <ArrowRightCircleIcon />
         </button>
