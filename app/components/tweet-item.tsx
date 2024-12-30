@@ -1,6 +1,4 @@
-import getSession from "@/libs/session";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 interface TweetItemProps {
   id: number;
