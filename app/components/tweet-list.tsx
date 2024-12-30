@@ -38,7 +38,7 @@ export default function TweetList() {
   }, [page]);
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center">
+    <div className="flex h-screen flex-col items-center">
       {currentTweets?.map((tweet, index) => (
         <TweetItem
           key={"tweet" + index}
@@ -48,7 +48,7 @@ export default function TweetList() {
           content={tweet.tweet}
         />
       ))}
-      <div>
+      <div className="p-10">
         <button
           onClick={() => setPage((prev) => prev - 1)}
           disabled={isLoading || isFirstPage}
